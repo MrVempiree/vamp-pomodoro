@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>vamp-pomodoro — Focus timer for creatures of the night</title>
+  <meta name="description" content="A Vempire-themed Pomodoro timer with focus cycles, session stats and a task list.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <svg class="moon-mark" viewBox="0 0 120 60" aria-hidden="true" focusable="false">
+      <circle cx="86" cy="26" r="17" fill="#fecdd3"/>
+      <circle cx="79" cy="21" r="15" fill="#12040a"/>
+      <path d="M28 22 C21 13 10 11 0 16 C5 19 5 23 2 26 C8 25 14 28 18 33 C21 28 25 26 28 29 C31 26 35 28 38 33 C42 28 48 25 54 26 C51 23 51 19 56 16 C46 11 35 13 28 22 Z" fill="#f43f5e"/>
+    </svg>
+    <h1>vamp-pomodoro</h1>
+    <p class="tagline">Focus by moonlight. Rest before dawn.</p>
+  </header>
+
+  <main class="layout">
+    <section class="panel glass timer-panel" aria-labelledby="timer-heading">
+      <h2 id="timer-heading" class="visually-hidden">Timer</h2>
+
+      <div class="phase-tabs" role="group" aria-label="Timer phase">
+        <button type="button" data-phase="focus">Focus</button>
+        <button type="button" data-phase="shortBreak">Short break</button>
+        <button type="button" data-phase="longBreak">Long break</button>
+      </div>
+
+      <div class="ring-wrap">
+        <svg class="ring" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+          <circle class="ring-track" cx="100" cy="100" r="90"/>
+          <circle id="ring-progress" class="ring-progress" cx="100" cy="100" r="90"/>
+        </svg>
+        <div class="ring-center">
+          <p id="phase-display" class="phase">Focus</p>
+          <p id="time-display" class="time" aria-live="polite">25:00</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button type="button" id="start-pause" class="primary">Start</button>
+        <button type="button" id="next-phase">Next phase</button>
+        <button type="button" id="reset">Reset</button>
+      </div>
+
+      <dl class="stats">
+        <div>
+          <dt>Completed sessions</dt>
+          <dd id="stat-sessions">0</dd>
+        </div>
+        <div>
+          <dt>Total focus minutes</dt>
+          <dd id="stat-minutes">0</dd>
+        </div>
+        <div>
+          <dt>Cycle</dt>
+          <dd id="stat-cycle">1 / 4</dd>
+        </div>
+      </dl>
+    </section>
+
+    <div class="side">
+      <section class="panel glass" aria-labelledby="tasks-heading">
+        <h2 id="tasks-heading">Tonight's tasks</h2>
+        <form id="task-form" class="task-form">
+          <label class="visually-hidden" for="task-input">New task</label>
+          <input id="task-input" type="text" placeholder="Add a task…" autocomplete="off">
+          <button type="submit" class="primary">Add</button>
+        </form>
+        <ul id="task-list" class="task-list"></ul>
+        <button type="button" id="clear-completed">Clear completed</button>
+      </section>
+
+      <section class="panel glass" aria-labelledby="settings-heading">
+        <h2 id="settings-heading">Settings</h2>
+        <form id="settings" class="settings">
+          <label>Focus (min) <input name="focus" type="number" min="1" max="180" value="25"></label>
+          <label>Short break (min) <input name="shortBreak" type="number" min="1" max="60" value="5"></label>
+          <label>Long break (min) <input name="longBreak" type="number" min="1" max="120" value="15"></label>
+          <label>Sessions before long break <input name="cycles" type="number" min="1" max="12" value="4"></label>
+          <button type="submit">Apply settings</button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>vamp-pomodoro · a Vempire project by Lavish Gangwar · tasks are saved in your browser</p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

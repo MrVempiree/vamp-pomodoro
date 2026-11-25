@@ -1,0 +1,1 @@
+{"author":"Lavish Gangwar","description":"A Vempire-themed Pomodoro focus timer with night cycles, session stats, and a built-in task list.","license":"MIT","name":"vamp-pomodoro","private":true,"scripts":{"check":"node --check app.js","test":"node --test"},"type":"module","version":"1.0.0"}
